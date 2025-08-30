@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDirectShowCapture", "TestDirectShowCapture\TestDirectShowCapture.csproj", "{37B6368E-209A-4AF8-B07D-EDBB899469D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectShowCapture", "DirectShowCapture\DirectShowCapture.csproj", "{1FB1C73A-0F8D-4CC3-8754-C36EA166243D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37B6368E-209A-4AF8-B07D-EDBB899469D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37B6368E-209A-4AF8-B07D-EDBB899469D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37B6368E-209A-4AF8-B07D-EDBB899469D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37B6368E-209A-4AF8-B07D-EDBB899469D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB1C73A-0F8D-4CC3-8754-C36EA166243D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB1C73A-0F8D-4CC3-8754-C36EA166243D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB1C73A-0F8D-4CC3-8754-C36EA166243D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB1C73A-0F8D-4CC3-8754-C36EA166243D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF3C15EB-55A9-4A3C-B7FA-624494A38EA8}
+	EndGlobalSection
+EndGlobal

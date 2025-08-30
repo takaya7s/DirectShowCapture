@@ -1,0 +1,9 @@
+.vs/
+packages/
+
+DirectShowCapture/_bk/
+DirectShowCapture/bin/
+DirectShowCapture/obj/
+TestDirectShowCapture/_bk/
+TestDirectShowCapture/bin/
+TestDirectShowCapture/obj/
