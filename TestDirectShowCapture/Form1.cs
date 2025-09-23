@@ -108,9 +108,37 @@ namespace TestDirectShowCapture
             Clipboard.SetImage(bitmap);
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (capture.ByteCount != 3) throw new Exception("非対応");
+
+            //Bitmap bitmap = capture.CaptureDownscaleByBlock(20);
+            //Bitmap bitmap = capture.CaptureDownscaleNearest(96, 54);
+            //Bitmap bitmap = capture.CaptureDownscaleBilinear(96, 54);
+            //Bitmap bitmap = capture.CaptureDownscaleBicubic(96, 54);
+
+            byte[] buffer = capture.GetBufferDownscaledByBlock(20, out int outWidth, out int outHeight);
+            Bitmap bitmap = toBitmap(buffer, outWidth, outHeight);
+
+            Clipboard.SetImage(bitmap);
+        }
+
         private Bitmap toBitmap(byte[] buffer)
         {
             Bitmap bitmap = new Bitmap(capture.Width, capture.Height, PixelFormat.Format24bppRgb);
+            BitmapData bitmapData = bitmap.LockBits(
+            new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+            ImageLockMode.WriteOnly,
+            PixelFormat.Format24bppRgb);
+            Marshal.Copy(buffer, 0, bitmapData.Scan0, buffer.Length);
+            bitmap.UnlockBits(bitmapData);
+
+            return bitmap;
+        }
+
+        private Bitmap toBitmap(byte[] buffer, int width, int height)
+        {
+            Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
             BitmapData bitmapData = bitmap.LockBits(
             new Rectangle(0, 0, bitmap.Width, bitmap.Height),
             ImageLockMode.WriteOnly,
