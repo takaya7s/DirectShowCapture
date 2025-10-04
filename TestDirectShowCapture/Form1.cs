@@ -117,7 +117,7 @@ namespace TestDirectShowCapture
             //Bitmap bitmap = capture.CaptureDownscaleBilinear(96, 54);
             //Bitmap bitmap = capture.CaptureDownscaleBicubic(96, 54);
 
-            byte[] buffer = capture.GetBufferDownscaledByBlock(20, out int outWidth, out int outHeight);
+            byte[] buffer = capture.GetBufferDownscaleByBlock(20, out int outWidth, out int outHeight, out int outStride);
             Bitmap bitmap = toBitmap(buffer, outWidth, outHeight);
 
             Clipboard.SetImage(bitmap);

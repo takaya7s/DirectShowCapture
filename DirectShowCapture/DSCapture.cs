@@ -791,21 +791,22 @@ namespace DirectShowCapture
             }
             return result;
         }/// <summary>
+
          /// ブロック平均で 1/n に縮小した「上下正しい」RGB24 の byte[] を返す。
          /// out: 縮小後の幅・高さ・ストライド（4バイト境界）
          /// 例：1920x1080, n=60 → 32x18, stride=Align4(32*3)=96
          /// </summary>
-        public byte[] GetBufferDownscaledByBlock(int n, out int outWidth, out int outHeight)
+        public byte[] GetBufferDownscaleByBlock(int n, out int outWidth, out int outHeight, out int outStride)
         {
-            if (buffer == IntPtr.Zero) { outWidth = outHeight = 0; return null; }
+            if (buffer == IntPtr.Zero) { outWidth = outHeight = outStride = 0; return null; }
             if (n <= 0) throw new ArgumentOutOfRangeException(nameof(n));
             if (width % n != 0 || height % n != 0)
                 throw new ArgumentException("元画像の幅/高さが n で割り切れません。");
 
             int dw = width / n;
             int dh = height / n;
-            int dStride = Align4(dw * 3);
-            var dst = new byte[dStride * dh];
+            outStride = dw * 3;
+            var dst = new byte[outStride * dh];
 
             lock (_bufLock)
             {
@@ -818,7 +819,7 @@ namespace DirectShowCapture
                     {
                         for (int oy = 0; oy < dh; oy++)
                         {
-                            byte* dp = d0 + oy * dStride;
+                            byte* dp = d0 + oy * outStride;
 
                             for (int ox = 0; ox < dw; ox++)
                             {
@@ -858,10 +859,6 @@ namespace DirectShowCapture
             outWidth = dw;
             outHeight = dh;
             return dst;
-
-            // --- ローカル関数 ---
-            // 4バイト境界に揃える
-            int Align4(int x) => (x + 3) & ~3;
         }
 
         public void Dispose()
